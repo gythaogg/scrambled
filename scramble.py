@@ -15,7 +15,7 @@ import random
 import string
 import time
 WORD_LEN_LIMIT = 5
-FILE_NAME = 'words.txt.out'
+FILE_NAME = '3000.txt.out'
 REL_PATH = 'data'
 
 def alpha_shuffle(word):

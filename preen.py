@@ -12,7 +12,7 @@ __status__ = "development"
 import logging
 import sys, os
 WORD_LEN_LIMIT = 5
-FILE_NAME = 'words.txt'
+FILE_NAME = '3000.txt'
 REL_PATH = 'data'
 
 def preen(filepath):
