@@ -35,7 +35,9 @@ def random_shuffle(word):
 def get_word_list(n):
     ''' gets n words from the input file'''
     fullPath = os.path.join(os.path.dirname(__file__), os.path.join(REL_PATH, FILE_NAME))
-    wordList = random.sample(open(fullPath).readlines(),n)
+    wordList = None
+    with open(fullPath) as inputFile:
+        wordList = random.sample(inputFile.readlines(),n)
     logging.debug('Selected words: %s',wordList)
     return [string.rstrip(w) for w in wordList]
 
