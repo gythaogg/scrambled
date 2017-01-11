@@ -1,13 +1,5 @@
 #!/usr/bin/env python
 ''' preens the data files and filters word lists'''
-__author__ = "Gytha Ogg"
-__copyright__ = "Gytha Ogg"
-__credits__ = ["Gytha Ogg"]
-__license__ = "MIT"
-__version__ = "0.1"
-__maintainer__ = "Gytha Ogg"
-__email__ = "gythaoggscat@gmail.com"
-__status__ = "development"
 
 import logging
 import sys, os
@@ -41,3 +33,12 @@ if __name__ == "__main__":
                     format='%(asctime)s %(levelname)s %(message)s')
 
     main(sys.argv)
+
+__author__ = "Gytha Ogg"
+__copyright__ = "Gytha Ogg"
+__credits__ = ["Gytha Ogg"]
+__license__ = "MIT"
+__version__ = "0.1"
+__maintainer__ = "Gytha Ogg"
+__email__ = "gythaoggscat@gmail.com"
+__status__ = "development"
