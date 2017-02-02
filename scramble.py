@@ -29,7 +29,7 @@ def alpha_shuffle(word):
     ''' alphabetically sorts the letters
     between the first and last letter of a word
     '''
-    alpha_shuffled = word[0]+''.join(sorted(word[1:-1]))+word[-1]
+    alpha_shuffled = word[0] + ''.join(sorted(word[1:-1])) + word[-1]
     logging.debug('%s has been shuffled to %s', word, alpha_shuffled)
     return alpha_shuffled
 
@@ -117,7 +117,6 @@ def main(argv):
 
     logging.basicConfig(level=log_level,
                         format='%(asctime)s %(levelname)s %(message)s')
-        
     if 'test' in argv:
         sample_test()
     elif 'quiz' in argv:
@@ -136,4 +135,3 @@ __version__ = "0.1"
 __maintainer__ = "Gytha Ogg"
 __email__ = "gythaoggscat@gmail.com"
 __status__ = "development"
-
