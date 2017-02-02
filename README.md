@@ -1,4 +1,4 @@
-# Scramble
+# Scrambled
 http://www.mrc-cbu.cam.ac.uk/people/matt.davis/Cmabrigde/
 
 An attempt to disprove the very annoying forward about how spelling doesn't matter as long as the first and last letters remain intact in a word by,
