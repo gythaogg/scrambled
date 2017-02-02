@@ -1,4 +1,4 @@
-##!/usr/bin/env python
+#!/usr/bin/env python
 '''
 Selects a random word from words.txt.out
 and scrambles the letters inside the word in various ways
@@ -127,3 +127,13 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv)
+
+__author__ = "Gytha Ogg"
+__copyright__ = "Gytha Ogg"
+__credits__ = ["Gytha Ogg"]
+__license__ = "MIT"
+__version__ = "0.1"
+__maintainer__ = "Gytha Ogg"
+__email__ = "gythaoggscat@gmail.com"
+__status__ = "development"
+
