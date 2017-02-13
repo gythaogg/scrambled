@@ -287,3 +287,6 @@ h3{
 .guess input{
     text-align: center;
 }
+.score{
+    float:right;
+}

@@ -4,18 +4,35 @@
 var app = angular.module('scrambledApp', []);
 
 app.controller('scrambledCtrl', function($scope) {
-    $scope.randomWord = get_random_word();
-    console.debug($scope.randomWord); 
-    $scope.scrambledWord =  get_scrambled_word($scope.randomWord);
+    $scope.numQ = 10;
+    $scope.thisQNum = 0;
+    get_next_word();
+    $scope.score = 0;
+    $scope.checkGuess = function() {
+	console.debug('Inside check guess')
+        if ($scope.guess == $scope.randomWord){
+	    $scope.score++;
+    	    if ($scope.thisQNum < $scope.numQ){
+		get_next_word();
+	    }
+	}
+    };
+    function get_next_word(){
+	$scope.randomWord = get_random_word();
+	console.debug($scope.randomWord); 
+	$scope.scrambledWord =  get_scrambled_word($scope.randomWord);
+	$scope.thisQNum++;
+	$scope.guess = '';
+    };
     function get_random_word(){
-	random_index = Math.floor(Math.random()*wordlist.length)
-	return wordlist[random_index].toLowerCase()
+	random_index = Math.floor(Math.random()*wordlist.length);
+	return wordlist[random_index].toLowerCase();
     };
     function get_scrambled_word(random_word){
 	random_word_middle = random_word.slice(1,-1).split('')
 	scrambled = random_word[0].concat(
-	random_word_middle.sort(function(a, b){return 0.5 - Math.random()}).join(''),
-	random_word[random_word.length - 1])
+	    random_word_middle.sort(function(a, b){return 0.5 - Math.random()}).join(''),
+	    random_word[random_word.length - 1])
 	return scrambled
     };
 });
