@@ -247,6 +247,7 @@ a {
 }
 
 /*Custom styles*/
+/*
 label
 {
     width: 150px;
@@ -272,4 +273,10 @@ h3{
 }
 .hint{
     font-size:smaller;
+}
+*/
+.scrambled-word{
+    font-size: 1.875em; /* 30px/16=1.875em */
+    text-align: center;
+    border: 3px solid #b5e853;
 }

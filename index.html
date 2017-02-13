@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <title>Scrambled by Gytha Ogg </title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -9,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="webapp/stylesheets/github-dark.css" media="screen">
     
     <script src="webapp/scripts/angular.min.js"></script>
-    <script src="webapp/scripts/words.min.js"></script>    
+    <script src="webapp/scripts/words.js"></script>    
 
   </head>
   <body>
@@ -20,6 +23,11 @@
     </header>
     <div class="container">
       <div ng-app="" class="ng-scope">
+	<div class="scrambled-word"><script>document.write(get_random_word());</script></div>
+	<!--
+	<p>Name: <input type="text" ng-model="name"></p>
+	<p ng-bind="name"></p>
+	-->
       </div>
     </div>
   </body>
