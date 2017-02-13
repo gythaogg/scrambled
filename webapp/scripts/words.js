@@ -1,18 +1,37 @@
 /*
  *words.js
  */
+class Report {
+    constructor(scrambled, original, userguess, score, timeTaken) {
+	this.scrambled = scrambled;
+	this.original = original;
+	this.userguess = userguess;
+	this.score = score;
+	this.timeTaken = timeTaken;
+  }
+}
+var r = new Report(1,2,3,4);
+
 var app = angular.module('scrambledApp', []);
 
 app.controller('scrambledCtrl', function($scope) {
-    $scope.numQ = 10;
-    $scope.thisQNum = 0;
-    $scope.wordSet = get_random_words($scope.numQ)
-    get_next_word();
-    $scope.score = 0;
+    $scope.startOver = function (){
+	$scope.numQ = 10;
+	$scope.thisQNum = 0;
+	$scope.wordSet = get_random_words($scope.numQ)
+	get_next_word();
+	$scope.score = 0;
+	$scope.correct = false;
+	$scope.report = []
+    }
+
+    $scope.startOver();
     
     $scope.checkGuess = function(){
 	if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
+	    $scope.correct = true;
 	    $scope.score++;
+	    report_stats();
 	    if ($scope.thisQNum < $scope.numQ){
 		get_next_word();
 	    }
@@ -22,21 +41,29 @@ app.controller('scrambledCtrl', function($scope) {
     $scope.skipWord = function(){
 	if ($scope.thisQNum <= $scope.numQ){
 	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
+		$scope.correct = true;
 		$scope.score++;
 	    }
+	    report_stats();
 	    if ($scope.thisQNum < $scope.numQ){
 		get_next_word();
 	    }
 	}
     }
-    
     function get_next_word(){
 	$scope.randomWord = $scope.wordSet[$scope.thisQNum];
 	console.debug($scope.randomWord); 
 	$scope.scrambledWord =  get_scrambled_word($scope.randomWord);
 	$scope.thisQNum++;
 	$scope.guess = '';
+	$scope.correct = false;
+	//TODO: Try to use jqLite instead
+	angular.forEach(document.querySelectorAll('.guess input'), function(elem) { elem.focus(); }); 
     };
+    
+    function report_stats(){
+	$scope.report.push(new Report($scope.scrambledWord, $scope.randomWord, $scope.guess, $scope.correct, 0));
+    }
 });
 
 

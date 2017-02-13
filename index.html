@@ -29,17 +29,34 @@
 	<div class="guess">
 	  <input ng-model="guess" ng-change="checkGuess()">
 	</div>
-	<div class = "skip">
-	  <button ng-click="skipWord()">Skip this!</button>
+	<div class = "greenBtn">
+	  <button ng-click="skipWord()">Skip</button>
 	</div>
+	<div class = "greenBtn">
+	  <button ng-click="startOver()">Start Over!</button>
+	</div>
+	<table>
+	  <tr>
+	    <th>Scrambled word</th>
+	    <th>Actual word</th>
+	    <th>Guessed word</th>
+	    <th>Time Taken (s)</th>
+	    <th>Result</th>	    
+	    </tr>
+	  <tr ng-repeat="x in report">
+	    <td>{{ x.scrambled }}</td>	    
+	    <td>{{ x.original }}</td>
+	    <td>{{ x.userguess }}</td>
+	    <td>{{ x.timeTaken }}</td>
+	    <td>{{ x.score }}</td>
+	  </tr>
+	</table>
 	<div>
-	  {{(randomWord.toLowerCase() == guess.toLowerCase())?'Well done!':''}}
+	  <!--
+	      {{(randomWord.toLowerCase() == guess.toLowerCase())?'Well done!':''}}
+	      </div>
+	    -->
 	</div>
-	<!--
-	    <p>Name: <input type="text" ng-model="name"></p>
-	<p ng-bind="name"></p>
-	-->
       </div>
-    </div>
   </body>
 </html>
