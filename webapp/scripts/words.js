@@ -8,7 +8,7 @@ class Report {
 	this.userguess = userguess;
 	this.score = score;
 	this.timeTaken = timeTaken;
-  }
+    }
 }
 var r = new Report(1,2,3,4);
 
@@ -22,24 +22,31 @@ app.controller('scrambledCtrl', function($scope) {
 	get_next_word();
 	$scope.score = 0;
 	$scope.correct = false;
-	$scope.report = []
+	$scope.report = [];
+	$scope.gameover = false;
     }
 
     $scope.startOver();
     
     $scope.checkGuess = function(){
-	if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
-	    $scope.correct = true;
-	    $scope.score++;
-	    report_stats();
-	    if ($scope.thisQNum < $scope.numQ){
-		get_next_word();
+	if (!$scope.gameover){
+	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
+		$scope.stopTime = new Date().getTime();
+		$scope.correct = true;
+		$scope.score++;
+		report_stats();
+		if ($scope.thisQNum < $scope.numQ){
+		    get_next_word();
+		}else{
+		    $scope.gameover = true;
+		}
 	    }
 	}
     }
 
     $scope.skipWord = function(){
-	if ($scope.thisQNum <= $scope.numQ){
+	if (!$scope.gameover){
+  	    $scope.stopTime = new Date().getTime();
 	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
 		$scope.correct = true;
 		$scope.score++;
@@ -47,7 +54,9 @@ app.controller('scrambledCtrl', function($scope) {
 	    report_stats();
 	    if ($scope.thisQNum < $scope.numQ){
 		get_next_word();
-	    }
+	    }else{
+		$scope.gameover = true;
+	    }	
 	}
     }
     function get_next_word(){
@@ -58,11 +67,13 @@ app.controller('scrambledCtrl', function($scope) {
 	$scope.guess = '';
 	$scope.correct = false;
 	//TODO: Try to use jqLite instead
-	angular.forEach(document.querySelectorAll('.guess input'), function(elem) { elem.focus(); }); 
+	angular.forEach(
+	    document.querySelectorAll('.guess input'), function(elem) { elem.focus(); });
+	$scope.startTime = new Date().getTime();
     };
     
     function report_stats(){
-	$scope.report.push(new Report($scope.scrambledWord, $scope.randomWord, $scope.guess, $scope.correct, 0));
+	$scope.report.push(new Report($scope.scrambledWord, $scope.randomWord, $scope.guess, $scope.correct, ($scope.stopTime - $scope.startTime)/1000));
     }
 });
 
@@ -71,7 +82,7 @@ function get_random_words(n){
     const shuffled = wordlist.sort(() => .5 - Math.random());// shuffle  
     return shuffled.slice(0,n); //get sub-array of first n elements AFTER shuffle
 }
-    
+
 function shuffle_FisherYates(array) {
     //https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
     //http://www.itsmycodeblog.com/shuffling-a-javascript-array/
