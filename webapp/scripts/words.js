@@ -11,7 +11,7 @@ app.controller('scrambledCtrl', function($scope) {
     $scope.score = 0;
     
     $scope.checkGuess = function(){
-	if ($scope.guess == $scope.randomWord){
+	if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
 	    $scope.score++;
 	    if ($scope.thisQNum < $scope.numQ){
 		get_next_word();
@@ -20,7 +20,7 @@ app.controller('scrambledCtrl', function($scope) {
     }
 
     $scope.skipWord = function(){
-	if ($scope.guess == $scope.randomWord){
+	if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
 	    $scope.score++;
 	}
 	if ($scope.thisQNum < $scope.numQ){
