@@ -22,8 +22,9 @@
       </div>
     </header>
     <div class="container">
-      <div ng-app="" class="ng-scope">
-	<div class="scrambled-word"><script>document.write(get_scrambled_word());</script></div>
+      <div ng-app="scrambledApp" ng-controller="scrambledCtrl">
+	<div class="scrambled-word" ng-bind="scrambledWord">
+	</div>
 	<!--
 	<p>Name: <input type="text" ng-model="name"></p>
 	<p ng-bind="name"></p>
