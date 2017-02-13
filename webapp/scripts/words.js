@@ -20,11 +20,13 @@ app.controller('scrambledCtrl', function($scope) {
     }
 
     $scope.skipWord = function(){
-	if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
-	    $scope.score++;
-	}
-	if ($scope.thisQNum < $scope.numQ){
-	    get_next_word();
+	if ($scope.thisQNum <= $scope.numQ){
+	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
+		$scope.score++;
+	    }
+	    if ($scope.thisQNum < $scope.numQ){
+		get_next_word();
+	    }
 	}
     }
     
@@ -71,7 +73,6 @@ function get_scrambled_word(random_word){
     random_word_middle = random_word.slice(1, -1)
     // Sort letters in the middle alphabetically
     middle_shuffled = random_word_middle.split('').sort().join('')
-    console.debug('alpha: ' + middle_shuffled)
 
     if (middle_shuffled == random_word_middle){
 	//If alphabetical sorting doesn't scramble, sort randomly
