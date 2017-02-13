@@ -25,6 +25,13 @@
       <div ng-app="scrambledApp" ng-controller="scrambledCtrl">
 	<div class="scrambled-word" ng-bind="scrambledWord">
 	</div>
+	<div class="guess">
+	  <input ng-model="guess">
+	</div>
+	<div>
+	  {{(randomWord == guess)?'Well done!':''}}
+	</div>
+	
 	<!--
 	<p>Name: <input type="text" ng-model="name"></p>
 	<p ng-bind="name"></p>
