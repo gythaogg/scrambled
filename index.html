@@ -23,10 +23,14 @@
 	</div>
       </header>
       <div class="container">
-	<div class="scrambled-word" ng-bind="scrambledWord">
+	<div class="scrambled-word" >
+	  {{thisQNum}}. {{scrambledWord}}
 	</div>
 	<div class="guess">
 	  <input ng-model="guess" ng-change="checkGuess()">
+	</div>
+	<div class = "skip">
+	  <button ng-click="skipWord()">Skip this!</button>
 	</div>
 	<div>
 	  {{(randomWord.toLowerCase() == guess.toLowerCase())?'Well done!':''}}

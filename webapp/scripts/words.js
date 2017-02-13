@@ -6,27 +6,43 @@ var app = angular.module('scrambledApp', []);
 app.controller('scrambledCtrl', function($scope) {
     $scope.numQ = 10;
     $scope.thisQNum = 0;
+    $scope.wordSet = get_random_words($scope.numQ)
     get_next_word();
     $scope.score = 0;
-    $scope.checkGuess = function() {
-        if ($scope.guess == $scope.randomWord){
+    
+    $scope.checkGuess = function(){
+	if ($scope.guess == $scope.randomWord){
 	    $scope.score++;
-    	    if ($scope.thisQNum < $scope.numQ){
+	    if ($scope.thisQNum < $scope.numQ){
 		get_next_word();
 	    }
 	}
-    };
+    }
+
+    $scope.skipWord = function(){
+	if ($scope.guess == $scope.randomWord){
+	    $scope.score++;
+	}
+	if ($scope.thisQNum < $scope.numQ){
+	    get_next_word();
+	}
+    }
+    
     function get_next_word(){
-	$scope.randomWord = get_random_word();
+	$scope.randomWord = $scope.wordSet[$scope.thisQNum];
 	console.debug($scope.randomWord); 
 	$scope.scrambledWord =  get_scrambled_word($scope.randomWord);
 	$scope.thisQNum++;
 	$scope.guess = '';
     };
-
 });
 
 
+function get_random_words(n){
+    const shuffled = wordlist.sort(() => .5 - Math.random());// shuffle  
+    return shuffled.slice(0,n); //get sub-array of first n elements AFTER shuffle
+}
+    
 function shuffle_FisherYates(array) {
     //https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
     //http://www.itsmycodeblog.com/shuffling-a-javascript-array/
@@ -52,10 +68,21 @@ function get_random_word(){
 
 
 function get_scrambled_word(random_word){
-    random_word_middle = random_word.slice(1,-1).split('')
-    //middle_shuffled = random_word_middle.sort(function(a, b){return 0.5 - Math.random()}).join('')
-    //middle_shuffled = shuffle_FisherYates(random_word_middle).join('')
-    middle_shuffled = random_word_middle.sort().join('')
+    random_word_middle = random_word.slice(1, -1)
+    // Sort letters in the middle alphabetically
+    middle_shuffled = random_word_middle.split('').sort().join('')
+    console.debug('alpha: ' + middle_shuffled)
+
+    if (middle_shuffled == random_word_middle){
+	//If alphabetical sorting doesn't scramble, sort randomly
+	middle_shuffled = random_word_middle.split('').sort(function(a, b){return 0.5 - Math.random()}).join('')
+	console.debug('random: ' + middle_shuffled)
+    }
+    if (middle_shuffled == random_word_middle){
+	//if random sort also doesn't scramble, sort using Fisher-Yates shuffle method
+	middle_shuffled = shuffle_FisherYates(random_word_middle.split('')).join('')
+	console.debug('FisherYates: ' + middle_shuffled)
+    }
     scrambled = random_word[0].concat(
 	middle_shuffled,
 	random_word[random_word.length - 1])
