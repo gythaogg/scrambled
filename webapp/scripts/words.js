@@ -44,7 +44,7 @@ app.controller('scrambledCtrl', function($scope) {
 	}
     }
 
-    $scope.skipWord = function(){
+    $scope.nextWord = function(){
 	if (!$scope.gameover){
   	    $scope.stopTime = new Date().getTime();
 	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){

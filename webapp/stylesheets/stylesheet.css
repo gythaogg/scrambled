@@ -295,7 +295,8 @@ h3{
     margin: 10px 0;
 }
 
-.greenBtn button{
+.greenBtn button,
+.greenBtn input{
 border : solid 1px #638a00;
 	border-radius : 3px;
 	moz-border-radius : 3px;
@@ -314,7 +315,8 @@ border : solid 1px #638a00;
 	background : linear-gradient(top, #96c300 0%, #648c00 100%);
 	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#96c300', endColorstr='#648c00',GradientType=0 );
 }
-.greenBtn button:hover {
+.greenBtn button:hover,
+.greenBtn input:hover{
     background: #65802e;
     text-decoration: none;
 }

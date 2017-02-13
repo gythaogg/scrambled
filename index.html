@@ -17,46 +17,52 @@
   </head>
   <body>
     <div ng-app="scrambledApp" ng-controller="scrambledCtrl">
-      <header>
+      <form ng-submit="nextWord()">
+	<header>
+	  <div class="container">
+            <h1>scrambled <div class = "score">{{score}}/{{numQ}}</div></h1>
+	  </div>
+	</header>
 	<div class="container">
-          <h1>scrambled <div class = "score">{{score}}/{{numQ}}</div></h1>
-	</div>
-      </header>
-      <div class="container">
-	<div class="scrambled-word" >
-	  {{thisQNum}}. {{scrambledWord}}
-	</div>
-	<div class="guess">
-	  <input ng-model="guess" ng-change="checkGuess()">
-	</div>
-	<div class = "greenBtn">
-	  <button ng-click="skipWord()">Skip</button>
-	</div>
-	<div class = "greenBtn">
-	  <button ng-click="startOver()">Start Over!</button>
-	</div>
-	<table>
-	  <tr>
-	    <th>Scrambled word</th>
-	    <th>Actual word</th>
-	    <th>Guessed word</th>
-	    <th>Time taken (s)</th>
-	    <th>Result</th>	    
-	    </tr>
-	  <tr ng-repeat="x in report">
-	    <td>{{ x.scrambled }}</td>	    
-	    <td>{{ x.original }}</td>
-	    <td>{{ x.userguess }}</td>
-	    <td>{{ x.timeTaken }}</td>
-	    <td>{{ x.score ? "correct" : "incorrect" }}</td>
-	  </tr>
-	</table>
-	<div>
-	  <!--
-	      {{(randomWord.toLowerCase() == guess.toLowerCase())?'Well done!':''}}
-	      </div>
-	    -->
-	</div>
+	  <div ng-hide="gameover">
+	    <div class="scrambled-word" >
+	      {{thisQNum}}. {{scrambledWord}}
+	    </div>
+	    <div class="guess">
+	      <input ng-model="guess" ng-change="checkGuess()">
+	    </div>
+	    <div class = "greenBtn">
+	      <input type="submit" value="Skip" />
+	    </div>
+	  </div>
+	  <div class = "greenBtn">
+	    <button ng-click="startOver()">Start Over!</button>
+	  </div>
+	  <div ng-show="gameover">
+	    <table>
+	      <tr>
+		<th>Scrambled word</th>
+		<th>Actual word</th>
+		<th>Guessed word</th>
+		<th>Time taken (s)</th>
+		<th>Result</th>	    
+	      </tr>
+	      <tr ng-repeat="x in report">
+		<td>{{ x.scrambled }}</td>	    
+		<td>{{ x.original }}</td>
+		<td>{{ x.userguess }}</td>
+		<td>{{ x.timeTaken }}</td>
+		<td>{{ x.score ? "correct" : "incorrect" }}</td>
+	      </tr>
+	    </table>
+	  </div>
+	  <div>
+	    <!--
+		{{(randomWord.toLowerCase() == guess.toLowerCase())?'Well done!':''}}
+		</div>
+	  -->
+	  </div>
+      </form>
       </div>
   </body>
 </html>
