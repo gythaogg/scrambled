@@ -17,14 +17,16 @@ var app = angular.module('scrambledApp', []);
 app.controller('scrambledCtrl', function($scope) {
 
     $scope.startOver = function (){
+	$scope.gameover = false;
 	$scope.numQ = 10;
 	$scope.thisQNum = 0;
 	$scope.wordSet = get_random_words($scope.numQ);
-	get_next_word();
 	$scope.score = 0;
 	$scope.correct = false;
 	$scope.report = [];
-	$scope.gameover = false;
+	get_next_word();
+	angular.forEach(
+	    document.querySelectorAll('.guess input'), function(elem) { elem.focus(); });
     };
 
     $scope.startOver();
