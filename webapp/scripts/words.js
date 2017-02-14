@@ -17,7 +17,6 @@ var app = angular.module('scrambledApp', []);
 app.controller('scrambledCtrl', function($scope) {
 
     $scope.startOver = function (){
-	console.debug('start over begin');
 	$scope.numQ = 10;
 	$scope.thisQNum = 0;
 	$scope.wordSet = get_random_words($scope.numQ);
@@ -26,13 +25,11 @@ app.controller('scrambledCtrl', function($scope) {
 	$scope.correct = false;
 	$scope.report = [];
 	$scope.gameover = false;
-	console.debug('start over end');
     };
 
     $scope.startOver();
     
     $scope.checkGuess = function(){
-	console.debug('check guess');
 	if (!$scope.gameover){
 	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
 		$scope.stopTime = new Date().getTime();
@@ -49,7 +46,6 @@ app.controller('scrambledCtrl', function($scope) {
     };
 
     $scope.nextWord = function(){
-	console.debug('nextWord: '+$scope.thisQNum);
 	if (!$scope.gameover){
   	    $scope.stopTime = new Date().getTime();
 	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
@@ -65,7 +61,6 @@ app.controller('scrambledCtrl', function($scope) {
 	}
     };
     function get_next_word(){
-	console.debug('get_next_word: '+$scope.thisQNum);
 	$scope.randomWord = $scope.wordSet[$scope.thisQNum];
 	console.debug($scope.randomWord); 
 	$scope.scrambledWord =  get_scrambled_word($scope.randomWord);
@@ -76,7 +71,6 @@ app.controller('scrambledCtrl', function($scope) {
 	angular.forEach(
 	    document.querySelectorAll('.guess input'), function(elem) { elem.focus(); });
 	$scope.startTime = new Date().getTime();
-	console.debug('set focus');
     };
     
     function report_stats(){
@@ -126,12 +120,10 @@ function get_scrambled_word(random_word){
 	//If alphabetical sorting doesn't scramble, sort randomly
 	middle_shuffled = random_word_middle.split('').sort(
 	    function(a, b){return 0.5 - Math.random()}).join('')
-	console.debug('random: ' + middle_shuffled)
     }
     if (middle_shuffled == random_word_middle){
 	//if random sort also doesn't scramble, sort using Fisher-Yates shuffle method
 	middle_shuffled = shuffle_FisherYates(random_word_middle.split('')).join('')
-	console.debug('FisherYates: ' + middle_shuffled)
     }
     scrambled = random_word[0].concat(
 	middle_shuffled,
