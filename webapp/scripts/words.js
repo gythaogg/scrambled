@@ -61,8 +61,7 @@ app.controller('scrambledCtrl', function($scope) {
 	}
     };
     function get_next_word(){
-	$scope.randomWord = $scope.wordSet[$scope.thisQNum];
-	console.debug($scope.randomWord); 
+	$scope.randomWord = $scope.wordSet[$scope.thisQNum].toLowerCase();
 	$scope.scrambledWord =  get_scrambled_word($scope.randomWord);
 	$scope.thisQNum++;
 	$scope.guess = '';
