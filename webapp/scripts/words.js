@@ -15,20 +15,24 @@ var r = new Report(1,2,3,4);
 var app = angular.module('scrambledApp', []);
 
 app.controller('scrambledCtrl', function($scope) {
+
     $scope.startOver = function (){
+	console.debug('start over begin');
 	$scope.numQ = 10;
 	$scope.thisQNum = 0;
-	$scope.wordSet = get_random_words($scope.numQ)
+	$scope.wordSet = get_random_words($scope.numQ);
 	get_next_word();
 	$scope.score = 0;
 	$scope.correct = false;
 	$scope.report = [];
 	$scope.gameover = false;
-    }
+	console.debug('start over end');
+    };
 
     $scope.startOver();
     
     $scope.checkGuess = function(){
+	console.debug('check guess');
 	if (!$scope.gameover){
 	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
 		$scope.stopTime = new Date().getTime();
@@ -42,9 +46,10 @@ app.controller('scrambledCtrl', function($scope) {
 		}
 	    }
 	}
-    }
+    };
 
     $scope.nextWord = function(){
+	console.debug('nextWord: '+$scope.thisQNum);
 	if (!$scope.gameover){
   	    $scope.stopTime = new Date().getTime();
 	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
@@ -58,8 +63,9 @@ app.controller('scrambledCtrl', function($scope) {
 		$scope.gameover = true;
 	    }	
 	}
-    }
+    };
     function get_next_word(){
+	console.debug('get_next_word: '+$scope.thisQNum);
 	$scope.randomWord = $scope.wordSet[$scope.thisQNum];
 	console.debug($scope.randomWord); 
 	$scope.scrambledWord =  get_scrambled_word($scope.randomWord);
@@ -70,6 +76,7 @@ app.controller('scrambledCtrl', function($scope) {
 	angular.forEach(
 	    document.querySelectorAll('.guess input'), function(elem) { elem.focus(); });
 	$scope.startTime = new Date().getTime();
+	console.debug('set focus');
     };
     
     function report_stats(){
@@ -109,12 +116,16 @@ function get_random_word(){
 
 function get_scrambled_word(random_word){
     random_word_middle = random_word.slice(1, -1)
-    // Sort letters in the middle alphabetically
-    middle_shuffled = random_word_middle.split('').sort().join('')
-
+    // Sort letters in the middle alphabetically or reverse alphabetically
+    middle_shuffled = random_word_middle.split('').sort()
+    if (Math.random() >= 0.5){
+	middle_shuffled.reverse()
+    }
+    middle_shuffled = middle_shuffled.join('')
     if (middle_shuffled == random_word_middle){
 	//If alphabetical sorting doesn't scramble, sort randomly
-	middle_shuffled = random_word_middle.split('').sort(function(a, b){return 0.5 - Math.random()}).join('')
+	middle_shuffled = random_word_middle.split('').sort(
+	    function(a, b){return 0.5 - Math.random()}).join('')
 	console.debug('random: ' + middle_shuffled)
     }
     if (middle_shuffled == random_word_middle){
