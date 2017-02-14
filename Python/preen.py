@@ -12,8 +12,8 @@ __maintainer__ = "Gytha Ogg"
 __email__ = "gythaoggscat@gmail.com"
 __status__ = "development"
 
-WORD_LEN_LIMIT = 5
-FILE_NAME = 'data/3000.txt'
+WORD_LEN_LIMIT = 7
+FILE_NAME = 'data/5kWords.txt'
 
 
 def preen(filename=FILE_NAME):
@@ -29,12 +29,12 @@ def preen(filename=FILE_NAME):
         logging.info('Read %d lines', len(lines))
         filtered = [l[:-1] for l in lines if WORD_LEN_LIMIT < len(l)]
         logging.info('%d lines after filtering', len(filtered))
-        outfile_name = filename + '.out'
+        outfile_name = filename + 'MIN_'+str(WORD_LEN_LIMIT)+'.out'
         logging.info('Writing to out file ... %s', outfile_name)
     with open(outfile_name, 'w') as outfile:
         for item in filtered:
             outfile.write("%s\n" % item)
-            logging.info('Written to %s.', outfile_name)
+            logging.info('Written %s to %s.', item, outfile_name)
     return
 
 
@@ -55,4 +55,3 @@ if __name__ == "__main__":
                         format='%(asctime)s %(levelname)s %(message)s')
 
     main(sys.argv[1:])
-

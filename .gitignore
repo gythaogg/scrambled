@@ -92,3 +92,8 @@ ENV/
 *~
 \#*
 .\#*
+
+# Calc
+.~lock.*
+*.csv
+*.ods
