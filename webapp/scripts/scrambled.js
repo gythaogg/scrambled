@@ -15,7 +15,7 @@ app.controller('scrambledCtrl', function($scope, $http) {
 
     $scope.set_word_list = function(){
  	$http.get('webapp/scripts/words.json').then(function(words) {
-	    var wordlist = words.data.all;
+	    var wordlist = words.data.long7;
 	    // shuffle and get sub-array of first n elements AFTER shuffle
 	    const shuffled = wordlist.sort(() => .5 - Math.random()).slice(0, $scope.numQ);
 	    $scope.wordSet = shuffled;
@@ -108,23 +108,26 @@ function shuffle_FisherYates(array) {
 
 function get_scrambled_word(random_word){
     random_word_middle = random_word.slice(1, -1)
-    // Sort letters in the middle alphabetically or reverse alphabetically
-    middle_shuffled = random_word_middle.split('').sort()
-    if (Math.random() >= 0.5){
-	middle_shuffled.reverse()
+    // Sort letters in the middle alphabetically or reverse alphabetically or randomly using Fisher-Yates shuffle
+    chance = Math.random();
+    middle_shuffled = random_word_middle.split('').sort();
+    if (chance >= 0.25 && chance < 0.5){
+	middle_shuffled.reverse();
     }
-    middle_shuffled = middle_shuffled.join('')
-    if (middle_shuffled == random_word_middle){
-	//If alphabetical sorting doesn't scramble, sort randomly
-	middle_shuffled = random_word_middle.split('').sort(
-	    function(a, b){return 0.5 - Math.random()}).join('')
-    }
-    if (middle_shuffled == random_word_middle){
+    else if (chance >= 0.5 && chance <0.75){
 	//if random sort also doesn't scramble, sort using Fisher-Yates shuffle method
-	middle_shuffled = shuffle_FisherYates(random_word_middle.split('')).join('')
+	middle_shuffled = shuffle_FisherYates(random_word_middle.split(''));
     }
+    else if (chance >= 0.75){
+	while (middle_shuffled == random_word_middle){
+	    //sort randomly until the words are different
+	    middle_shuffled = random_word_middle.split('').sort(
+		function(a, b){return 0.5 - Math.random()});
+	}
+    }
+
     scrambled = random_word[0].concat(
-	middle_shuffled,
-	random_word[random_word.length - 1])
+	middle_shuffled.join(''),
+	random_word[random_word.length - 1]);
     return scrambled
 }
