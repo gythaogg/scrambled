@@ -111,10 +111,10 @@ function get_scrambled_word(random_word){
     // Sort letters in the middle alphabetically or reverse alphabetically or randomly using Fisher-Yates shuffle
     chance = Math.random();
     middle_shuffled = random_word_middle.split('').sort();
-    if (chance >= 0.25 && chance < 0.5){
+    if ((chance >= 0.25 && chance < 0.5) || middle_shuffled == random_word_middle){
 	middle_shuffled.reverse();
     }
-    else if (chance >= 0.5 && chance <0.75){
+    else if ((chance >= 0.5 && chance <0.75) || middle_shuffled == random_word_middle){
 	//if random sort also doesn't scramble, sort using Fisher-Yates shuffle method
 	middle_shuffled = shuffle_FisherYates(random_word_middle.split(''));
     }
