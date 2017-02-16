@@ -1,6 +1,3 @@
-/*
- *words.js
- */
 class Report {
     constructor(scrambled, original, userguess, score, timeTaken) {
 	this.scrambled = scrambled;
@@ -20,7 +17,7 @@ app.controller('scrambledCtrl', function($scope, $http) {
  	$http.get('webapp/scripts/words.json').then(function(words) {
 	    var wordlist = words.data.all;
 	    // shuffle and get sub-array of first n elements AFTER shuffle
-	    const shuffled = wordlist.sort(() => .5 - Math.random()).slice(0, $scope.numQ);// shuffle
+	    const shuffled = wordlist.sort(() => .5 - Math.random()).slice(0, $scope.numQ);
 	    $scope.wordSet = shuffled;
     	    get_next_word();
 	});
