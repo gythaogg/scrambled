@@ -27,7 +27,7 @@ app.controller('scrambledCtrl', function($scope, $http) {
 	$scope.numQ = 10;
 	$scope.thisQNum = 0;
 	$scope.score = 0;
-	$scope.correct = false;
+	$scope.correct = 'incorrect';
 	$scope.report = [];
 	$scope.set_word_list();
 	angular.forEach(
@@ -40,7 +40,7 @@ app.controller('scrambledCtrl', function($scope, $http) {
 	if (!$scope.gameover){
 	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
 		$scope.stopTime = new Date().getTime();
-		$scope.correct = true;
+		$scope.correct = 'correct';
 		$scope.score++;
 		report_stats();
 		if ($scope.thisQNum < $scope.numQ){
@@ -56,7 +56,7 @@ app.controller('scrambledCtrl', function($scope, $http) {
 	if (!$scope.gameover){
   	    $scope.stopTime = new Date().getTime();
 	    if ($scope.guess.toLowerCase() == $scope.randomWord.toLowerCase()){
-		$scope.correct = true;
+		$scope.correct = 'correct';
 		$scope.score++;
 	    }
 	    report_stats();
@@ -72,7 +72,7 @@ app.controller('scrambledCtrl', function($scope, $http) {
 	$scope.scrambledWord =  get_scrambled_word($scope.randomWord);
 	$scope.thisQNum++;
 	$scope.guess = '';
-	$scope.correct = false;
+	$scope.correct = 'incorrect';
 	//TODO: Try to use jqLite instead
 	angular.forEach(
 	    document.querySelectorAll('.guess input'), function(elem) { elem.focus(); });
