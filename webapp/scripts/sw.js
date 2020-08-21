@@ -4,14 +4,14 @@ self.addEventListener('install', function(e) {
             return cache.addAll([
                 '/',
                 '/index.html',
-                '/images/bkg.png',
-                '/images/blacktocat.png',
-                '/images/dragon.png',
-                '/scripts/angular.min.js',
-                '/scripts/scrambled.js',
-                '/scripts/words.json',
-                '/stylesheets/github-dark.css',
-                '/stylesheets/stylesheet.css',
+                '/webapp/images/bkg.png',
+                '/webapp/images/blacktocat.png',
+                '/webapp/images/dragon.png',
+                '/webapp/scripts/angular.min.js',
+                '/webapp/scripts/scrambled.js',
+                '/webapp/scripts/words.json',
+                '/webapp/stylesheets/github-dark.css',
+                '/webapp/stylesheets/stylesheet.css',
             ]);
         })
     );
