@@ -14,7 +14,7 @@
   ],
     "serviceworker": {
         "src": "./webapp/scripts/sw.js",
-        "scope": "/",
+        "scope": "/scrambled",
         "type": "",
         "update_via_cache": "none"
 }
