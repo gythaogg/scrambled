@@ -2,7 +2,7 @@
   "name": "Scrambled",
   "short_name": "Scrambled",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/scrambled",
   "theme_color": "#b5e853",
   "background_color": "#000000",
   "icons": [
@@ -13,10 +13,8 @@
     }
   ],
     "serviceworker": {
-        "src": "./webapp/scripts/sw.js",
-        "scope": "/scrambled",
+        "src": "/scrambled/sw.js",
         "type": "",
         "update_via_cache": "none"
-}
-
+    }
 }
