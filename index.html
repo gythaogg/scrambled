@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <title>Scrambled by Gytha Ogg </title>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
     <link rel="stylesheet" type="text/css" href="webapp/stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="webapp/stylesheets/github-dark.css" media="screen">
-    
+
     <script src="webapp/scripts/angular.min.js"></script>
-    <script src="webapp/scripts/scrambled.js"></script>    
+    <script src="webapp/scripts/scrambled.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -27,50 +26,50 @@
   <body>
     <div ng-app="scrambledApp" ng-controller="scrambledCtrl">
       <form ng-submit="nextWord()">
-	<header>
-	  <div class="container">
+  <header>
+    <div class="container">
             <h1>scrambled <div class = "score">{{score}}/{{numQ}}</div></h1>
-	  </div>
-	</header>
-	<div class="container">
-	  <div ng-hide="gameover">
-	    <div class="scrambled-word" >
-	      {{thisQNum}}. {{scrambledWord}}
-	    </div>
-	    <div class="guess">
-	      <input ng-model="guess" ng-change="checkGuess()">
-	    </div>
-	    <div class = "greenBtn">
-	      <input type="submit" value="Skip" />
-	    </div>
-	  </div>
-	  <div class = "greenBtn">
-	    <input type="button" ng-click="startOver()" value="Start Over!" />
-	  </div>
-	  <div ng-show="gameover">
-	    <table>
-	      <tr>
-		<th>Scrambled word</th>
-		<th>Actual word</th>
-		<th>Guessed word</th>
-		<th>Time taken (s)</th>
-		<th>Result</th>	    
-	      </tr>
-	      <tr ng-repeat="x in report" class="{{x.score}}">
-		<td>{{ x.scrambled }}</td>	    
-		<td>{{ x.original }}</td>
-		<td>{{ x.userguess }}</td>
-		<td>{{ x.timeTaken }}</td>
-		<td>{{ x.score }}</td>
-	      </tr>
-	    </table>
-	  </div>
-	  <div>
-	    <!--
-		{{(randomWord.toLowerCase() == guess.toLowerCase())?'Well done!':''}}
-		</div>
-	  -->
-	  </div>
+    </div>
+  </header>
+  <div class="container">
+    <div ng-hide="gameover">
+      <div class="scrambled-word" >
+        {{thisQNum}}. {{scrambledWord}}
+      </div>
+      <div class="guess">
+        <input ng-model="guess" ng-change="checkGuess()">
+      </div>
+      <div class = "greenBtn">
+        <input type="submit" value="Skip" />
+      </div>
+    </div>
+    <div class = "greenBtn">
+      <input type="button" ng-click="startOver()" value="Start Over!" />
+    </div>
+    <div ng-show="gameover">
+      <table>
+        <tr>
+    <th>Scrambled word</th>
+    <th>Actual word</th>
+    <th>Guessed word</th>
+    <th>Time taken (s)</th>
+    <th>Result</th>
+        </tr>
+        <tr ng-repeat="x in report" class="{{x.score}}">
+    <td>{{ x.scrambled }}</td>
+    <td>{{ x.original }}</td>
+    <td>{{ x.userguess }}</td>
+    <td>{{ x.timeTaken }}</td>
+    <td>{{ x.score }}</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <!--
+    {{(randomWord.toLowerCase() == guess.toLowerCase())?'Well done!':''}}
+    </div>
+    -->
+    </div>
       </form>
       </div>
   </body>
