@@ -54,16 +54,12 @@
         <tr>
     <th>Scrambled word</th>
     <th>Actual word</th>
-    <th>Guessed word</th>
     <th>Time taken (s)</th>
-    <th>Result</th>
         </tr>
         <tr ng-repeat="x in report" class="{{x.score}}">
     <td>{{ x.scrambled }}</td>
     <td>{{ x.original }}</td>
-    <td>{{ x.userguess }}</td>
     <td>{{ x.timeTaken }}</td>
-    <td>{{ x.score }}</td>
         </tr>
       </table>
     </div>
