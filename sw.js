@@ -3,15 +3,15 @@ self.addEventListener('install', function(e) {
         caches.open('your-magic-cache').then(function(cache) {
             return cache.addAll([
                 '/',
-                '/index.html',
-                '/webapp/images/bkg.png',
-                '/webapp/images/*.png',
-                '/webapp/images/dragon.png',
-                '/webapp/scripts/angular.min.js',
-                '/webapp/scripts/scrambled.js',
-                '/webapp/scripts/words.json',
-                '/webapp/stylesheets/github-dark.css',
-                '/webapp/stylesheets/stylesheet.css',
+                'index.html',
+                'webapp/images/bkg.png',
+                'webapp/images/*.png',
+                'webapp/images/dragon.png',
+                'webapp/scripts/angular.min.js',
+                'webapp/scripts/scrambled.js',
+                'webapp/scripts/words.json',
+                'webapp/stylesheets/github-dark.css',
+                'webapp/stylesheets/stylesheet.css',
             ]);
         })
     );
