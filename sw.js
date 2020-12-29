@@ -6,6 +6,7 @@ self.addEventListener('install', function(e) {
                 '/index.html',
                 '/webapp/images/bkg.png',
                 '/webapp/images/blacktocat.png',
+                '/webapp/images/*.png',
                 '/webapp/images/dragon.png',
                 '/webapp/scripts/angular.min.js',
                 '/webapp/scripts/scrambled.js',
