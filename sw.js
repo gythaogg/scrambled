@@ -11,12 +11,6 @@ self.addEventListener('install', function(e) {
                 'webapp/images/bkg.png',
                 'webapp/images/icon-128.png',
                 'webapp/images/icon-72.png',
-                'webapp/images/icon-96.png',
-                'webapp/images/icon-144.png',
-                'webapp/images/icon-152.png',
-                'webapp/images/icon-192.png',
-                'webapp/images/icon-512.png',
-                'webapp/images/dragon.png'
             ]);
         })
     );
