@@ -14,7 +14,6 @@ self.addEventListener('install', function(e) {
                 'webapp/images/icon-96.png',
                 'webapp/images/icon-144.png',
                 'webapp/images/icon-152.png',
-                'webapp/images/icon-180.png',
                 'webapp/images/icon-192.png',
                 'webapp/images/icon-384.png',
                 'webapp/images/icon-512.png',
