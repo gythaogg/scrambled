@@ -3,6 +3,11 @@ self.addEventListener('install', function(e) {
         caches.open('scrambled-cache').then(function(cache) {
             return cache.addAll([
                 'index.html',
+                'webapp/scripts/angular.min.js',
+                'webapp/scripts/scrambled.js',
+                'webapp/scripts/words.json',
+                'webapp/stylesheets/github-dark.css',
+                'webapp/stylesheets/stylesheet.css',
                 'webapp/images/bkg.png',
                 'webapp/images/icon-128.png',
                 'webapp/images/icon-72.png',
@@ -14,12 +19,7 @@ self.addEventListener('install', function(e) {
                 'webapp/images/icon-192.png',
                 'webapp/images/icon-384.png',
                 'webapp/images/icon-512.png',
-                'webapp/images/dragon.png',
-                'webapp/scripts/angular.min.js',
-                'webapp/scripts/scrambled.js',
-                'webapp/scripts/words.json',
-                'webapp/stylesheets/github-dark.css',
-                'webapp/stylesheets/stylesheet.css',
+                'webapp/images/dragon.png'
             ]);
         })
     );
